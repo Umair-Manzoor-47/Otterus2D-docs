@@ -1,0 +1,624 @@
+/* ==========================================================================
+   Otterus2D Documentation Theme (Modeled after Godot Docs)
+   Centralized Layout with Left/Right Gutter Margins & High-Contrast Typography
+   ========================================================================== */
+
+:root {
+  --ot-transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+
+  /* ------------------------------------------------------------------------
+     MILD THEME (Godot-style Clean Slate & Riverbed)
+     ------------------------------------------------------------------------ */
+  --ot-gutter-bg: #e2ebe9;                /* Outer left/right space background */
+  --ot-gutter-shadow: rgba(0, 0, 0, 0.09);
+  --ot-bg-content: #f8fafb;               /* Central content canvas (mild, glare-free) */
+  --ot-text-main: #2c3e50;                /* Deep slate reading text */
+  --ot-text-muted: #627d98;
+  --ot-heading: #1a2936;                 /* River stone heading */
+
+  /* River & Trail Accents */
+  --ot-river-teal: #1f766d;              /* River Teal for links */
+  --ot-river-teal-hover: #134f49;
+  --ot-trail-clay: #b86022;              /* Trail Amber / Clay for alerts */
+  --ot-trail-amber: #d97724;
+
+  /* Sidebar (Godot Dark River-Slate) */
+  --ot-sidebar-bg: #202c39;              /* Deep slate sidebar */
+  --ot-sidebar-search: #2b3a4a;          /* Search input background */
+  --ot-sidebar-caption: #8fa6b8;         /* Uppercase section category text */
+  --ot-sidebar-text: #c8d6e5;            /* Inactive menu link text */
+  --ot-sidebar-hover-bg: #2a3a4c;        /* Menu link hover background */
+  --ot-sidebar-sub-bg: #18222d;          /* Submenu (level 2+) background */
+  --ot-sidebar-sub-text: #a8becf;        /* Submenu link text */
+  --ot-sidebar-active-parent-bg: #263647;/* Expanded category background */
+  --ot-sidebar-active-item-bg: #2e4357;  /* Active page link background */
+  --ot-sidebar-active-text: #5eead4;     /* Radiant mint text for active item */
+  --ot-sidebar-border: #283747;
+
+  /* Tables */
+  --ot-table-head-bg: #edf4f3;
+  --ot-table-head-text: #162e33;
+  --ot-table-zebra-bg: #f2f7f6;
+  --ot-table-hover-bg: #e5efee;
+  --ot-border: #dbe4e6;
+  --ot-border-subtle: #e8eff1;
+
+  /* Code & Breadcrumbs */
+  --ot-code-inline-bg: #edf3f3;
+  --ot-code-inline-text: #964e1e;
+  --ot-breadcrumb-current: #1a2936;
+}
+
+/* --------------------------------------------------------------------------
+   DARK MODE (Godot-style Dark Slate & Deep Waters)
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] {
+  --ot-gutter-bg: #090e12;                /* Outer left/right space background */
+  --ot-gutter-shadow: rgba(0, 0, 0, 0.55);
+  --ot-bg-content: #161c22;               /* Obsidian slate content canvas */
+  --ot-text-main: #cdd9e5;                /* Soft moonlight text */
+  --ot-text-muted: #76899c;
+  --ot-heading: #f0f6fc;
+
+  --ot-river-teal: #4ecdc4;              /* Glowing aqua-teal for links */
+  --ot-river-teal-hover: #7ae7df;
+  --ot-trail-clay: #e5934c;
+  --ot-trail-amber: #f6ad55;
+
+  /* Sidebar (Obsidian Slate) */
+  --ot-sidebar-bg: #0e1318;
+  --ot-sidebar-search: #172029;
+  --ot-sidebar-caption: #63778a;
+  --ot-sidebar-text: #8fa3b7;
+  --ot-sidebar-hover-bg: #1a242f;
+  --ot-sidebar-sub-bg: #090d10;
+  --ot-sidebar-sub-text: #788c9f;
+  --ot-sidebar-active-parent-bg: #141d26;
+  --ot-sidebar-active-item-bg: #1c2936;
+  --ot-sidebar-active-text: #4ecdc4;
+  --ot-sidebar-border: #1a222a;
+
+  /* Tables */
+  --ot-table-head-bg: #1f2832;
+  --ot-table-head-text: #e6f6f2;
+  --ot-table-zebra-bg: #12181d;
+  --ot-table-hover-bg: #222d38;
+  --ot-border: #273442;
+  --ot-border-subtle: #1c2732;
+
+  /* Code & Breadcrumbs */
+  --ot-code-inline-bg: #1e2936;
+  --ot-code-inline-text: #f6ad55;
+  --ot-breadcrumb-current: #f0f6fc;
+}
+
+/* ==========================================================================
+   CENTRALIZED LAYOUT (GODOT DOCUMENTATION STANDARD)
+   Leaves balanced outer margins to the left of the side panel and to the
+   right of the content area on desktop displays.
+   ========================================================================== */
+
+body {
+  background-color: var(--ot-gutter-bg) !important;
+  color: var(--ot-text-main) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transition: var(--ot-transition);
+}
+
+@media screen and (min-width: 1100px) {
+  body.wy-body-for-nav {
+    background-color: var(--ot-gutter-bg) !important;
+  }
+
+  .wy-grid-for-nav {
+    max-width: 1380px !important;
+    margin: 0 auto !important;
+    position: relative !important;
+    display: flex !important;
+    min-height: 100vh !important;
+    box-shadow: 0 0 35px var(--ot-gutter-shadow) !important;
+    border-left: 1px solid var(--ot-sidebar-border) !important;
+    border-right: 1px solid var(--ot-border) !important;
+  }
+
+  .wy-nav-side {
+    position: sticky !important;
+    top: 0 !important;
+    height: 100vh !important;
+    width: 300px !important;
+    min-width: 300px !important;
+    max-width: 300px !important;
+    left: auto !important;
+    bottom: auto !important;
+    z-index: 10 !important;
+  }
+
+  .wy-side-scroll {
+    width: 100% !important;
+    height: 100% !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  .wy-nav-content-wrap {
+    margin-left: 0 !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+    background-color: var(--ot-bg-content) !important;
+  }
+
+  .wy-nav-content {
+    max-width: 960px !important;
+    margin: 0 auto !important;
+    padding: 2.2rem 3.5rem 4rem 3.5rem !important;
+    box-shadow: none !important;
+    border: none !important;
+    background-color: var(--ot-bg-content) !important;
+  }
+}
+
+/* Fallback for smaller/mobile screens */
+@media screen and (max-width: 1099px) {
+  .wy-nav-content-wrap {
+    background-color: var(--ot-bg-content) !important;
+  }
+
+  .wy-nav-content {
+    padding: 1.5rem 1.8rem 3rem 1.8rem !important;
+    background-color: var(--ot-bg-content) !important;
+  }
+}
+
+/* ==========================================================================
+   Breadcrumb Bar & Active Topic (Fixed High-Contrast Visibility)
+   ========================================================================== */
+
+.wy-breadcrumbs {
+  margin-bottom: 1.2rem !important;
+  font-size: 0.88rem !important;
+  line-height: 1.6 !important;
+}
+
+.wy-breadcrumbs li {
+  color: var(--ot-text-muted) !important;
+}
+
+.wy-breadcrumbs li a {
+  color: var(--ot-river-teal) !important;
+  font-weight: 500 !important;
+}
+
+.wy-breadcrumbs li a:hover {
+  color: var(--ot-trail-clay) !important;
+  text-decoration: underline !important;
+}
+
+/* Home Icon */
+.wy-breadcrumbs li a.icon-home,
+.wy-breadcrumbs li a.icon-home:before {
+  color: var(--ot-river-teal) !important;
+  font-size: 1.05rem !important;
+  vertical-align: middle;
+}
+
+/* Active Page / Topic Title */
+.wy-breadcrumbs li.active,
+.wy-breadcrumbs li.breadcrumb-item.active,
+.wy-breadcrumbs li:last-child {
+  color: var(--ot-breadcrumb-current) !important;
+  font-weight: 700 !important;
+}
+
+.rst-content div[role="navigation"] hr,
+.wy-breadcrumbs + hr {
+  border: none !important;
+  border-top: 1px solid var(--ot-border) !important;
+  margin: 0.8rem 0 2rem 0 !important;
+}
+
+/* Mobile top navigation header */
+.wy-nav-top {
+  background: var(--ot-sidebar-bg) !important;
+  color: #ffffff !important;
+}
+
+.wy-nav-top a {
+  color: #ffffff !important;
+}
+
+/* ==========================================================================
+   SIDEBAR NAVIGATION: GODOT STYLE & STRICT BOX MODEL
+   ========================================================================== */
+
+.wy-nav-side,
+.wy-side-scroll {
+  background: var(--ot-sidebar-bg) !important;
+  border-right: 1px solid var(--ot-sidebar-border);
+  transition: var(--ot-transition);
+}
+
+.wy-side-nav-search {
+  background: var(--ot-sidebar-bg) !important;
+  padding: 1.2rem 1.2rem 1rem 1.2rem !important;
+  border-bottom: 1px solid var(--ot-sidebar-border);
+  text-align: center;
+}
+
+.wy-side-nav-search > a {
+  color: #f1f6fa !important;
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.wy-side-nav-search input[type="text"] {
+  background: var(--ot-sidebar-search) !important;
+  border: 1px solid var(--ot-sidebar-border) !important;
+  color: #f4fbf9 !important;
+  border-radius: 20px !important;
+  padding: 6px 14px !important;
+  font-size: 0.88rem !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.wy-side-nav-search input[type="text"]:focus {
+  border-color: var(--ot-river-teal) !important;
+  outline: none;
+}
+
+/* Strip RTD's default light backgrounds from all menu tiers */
+.wy-menu-vertical,
+.wy-menu-vertical ul,
+.wy-menu-vertical li,
+.wy-menu-vertical li.current,
+.wy-menu-vertical li.toctree-l1,
+.wy-menu-vertical li.toctree-l2,
+.wy-menu-vertical li.toctree-l3,
+.wy-menu-vertical li.toctree-l4 {
+  background: var(--ot-sidebar-bg) !important;
+  list-style: none !important;
+  margin: 0 !important;
+}
+
+/* Category Captions (e.g. GETTING STARTED, TUTORIALS) */
+.wy-menu-vertical p.caption {
+  display: block !important;
+  color: var(--ot-sidebar-caption) !important;
+  text-transform: uppercase !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 1.2px !important;
+  padding: 18px 16px 8px 16px !important;
+  margin: 0 !important;
+  line-height: 1.4 !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Base Navigation Links (Strict Block Box-Model to prevent any overlapping) */
+.wy-menu-vertical li a {
+  display: block !important;
+  color: var(--ot-sidebar-text) !important;
+  background: transparent !important;
+  padding: 7px 16px !important;
+  font-size: 0.88rem !important;
+  line-height: 1.45 !important;
+  border: none !important;
+  margin: 0 !important;
+  position: relative !important;
+  z-index: 1 !important;
+  box-sizing: border-box !important;
+  transition: var(--ot-transition);
+}
+
+.wy-menu-vertical li a:hover {
+  background: var(--ot-sidebar-hover-bg) !important;
+  color: #ffffff !important;
+}
+
+/* Expanded active section / parent page */
+.wy-menu-vertical li.current > a,
+.wy-menu-vertical li.on a {
+  background: var(--ot-sidebar-active-parent-bg) !important;
+  color: #ffffff !important;
+  border-left: 3px solid var(--ot-river-teal) !important;
+  font-weight: 600 !important;
+}
+
+/* Indented nested submenu container */
+.wy-menu-vertical li.current ul {
+  background: var(--ot-sidebar-sub-bg) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Nested sub-items (Level 2+) */
+.wy-menu-vertical li.current li a,
+.wy-menu-vertical li.toctree-l2 a,
+.wy-menu-vertical li.toctree-l3 a {
+  background: var(--ot-sidebar-sub-bg) !important;
+  color: var(--ot-sidebar-sub-text) !important;
+  padding: 6px 16px 6px 26px !important;
+  font-size: 0.84rem !important;
+}
+
+.wy-menu-vertical li.current li a:hover,
+.wy-menu-vertical li.toctree-l2 a:hover,
+.wy-menu-vertical li.toctree-l3 a:hover {
+  background: var(--ot-sidebar-hover-bg) !important;
+  color: #ffffff !important;
+}
+
+/* Active sub-item link */
+.wy-menu-vertical li.current li.current > a,
+.wy-menu-vertical li.toctree-l2.current > a,
+.wy-menu-vertical li.toctree-l3.current > a {
+  background: var(--ot-sidebar-active-item-bg) !important;
+  color: var(--ot-sidebar-active-text) !important;
+  border-left: 3px solid var(--ot-trail-amber) !important;
+  font-weight: 700 !important;
+}
+
+/* Level 3 deeper indentation */
+.wy-menu-vertical li.current li.current li a,
+.wy-menu-vertical li.toctree-l3 a {
+  padding-left: 36px !important;
+}
+
+/* ==========================================================================
+   TABLES: GODOT STYLE (CLEAN, NO CLIPPING, NO TEXT OVERLAPPING)
+   ========================================================================== */
+
+.wy-table-responsive,
+.rst-content .wy-table-responsive {
+  width: 100% !important;
+  overflow-x: auto !important;
+  margin: 1.5rem 0 !important;
+  border: 1px solid var(--ot-border) !important;
+  border-radius: 6px !important;
+}
+
+.rst-content table.docutils,
+table.docutils {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  border: none !important;
+  margin: 0 !important;
+  background-color: var(--ot-bg-content) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
+}
+
+.rst-content table.docutils colgroup col {
+  width: auto !important;
+}
+
+.rst-content table.docutils th,
+table.docutils th {
+  background-color: var(--ot-table-head-bg) !important;
+  color: var(--ot-table-head-text) !important;
+  font-weight: 700 !important;
+  text-align: left !important;
+  padding: 10px 14px !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: 1px solid var(--ot-border-subtle) !important;
+  border-bottom: 2px solid var(--ot-river-teal) !important;
+  white-space: nowrap !important;
+}
+
+.rst-content table.docutils th:last-child {
+  border-right: none !important;
+}
+
+.rst-content table.docutils td,
+table.docutils td {
+  padding: 10px 14px !important;
+  color: var(--ot-text-main) !important;
+  vertical-align: top !important;
+  border-top: 1px solid var(--ot-border-subtle) !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: 1px solid var(--ot-border-subtle) !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  line-height: 1.5 !important;
+}
+
+.rst-content table.docutils td:last-child {
+  border-right: none !important;
+}
+
+.rst-content table.docutils td p,
+.rst-content table.docutils th p {
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+
+.rst-content table.docutils tr:nth-child(even) td {
+  background-color: var(--ot-table-zebra-bg) !important;
+}
+
+.rst-content table.docutils tr:nth-child(odd) td {
+  background-color: var(--ot-bg-content) !important;
+}
+
+.rst-content table.docutils tr:hover td {
+  background-color: var(--ot-table-hover-bg) !important;
+}
+
+/* ==========================================================================
+   Typography & Elements (Godot Style)
+   ========================================================================== */
+
+.rst-content h1,
+.rst-content h2,
+.rst-content h3,
+.rst-content h4 {
+  color: var(--ot-heading) !important;
+  font-weight: 700 !important;
+}
+
+.rst-content h1 {
+  border-bottom: 2px solid var(--ot-river-teal) !important;
+  padding-bottom: 0.5rem;
+  margin-top: 0 !important;
+  margin-bottom: 1.4rem;
+  font-size: 2rem !important;
+}
+
+.rst-content h2 {
+  border-bottom: 1px solid var(--ot-border) !important;
+  padding-bottom: 0.35rem;
+  margin-top: 2.2rem;
+  font-size: 1.45rem !important;
+}
+
+.rst-content h3 {
+  font-size: 1.18rem !important;
+  margin-top: 1.8rem;
+}
+
+/* Content Links */
+.rst-content a {
+  color: var(--ot-river-teal) !important;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.rst-content a:hover {
+  color: var(--ot-trail-clay) !important;
+  text-decoration: underline;
+}
+
+/* Inline Code Badges */
+.rst-content code.literal,
+.rst-content tt.literal {
+  background: var(--ot-code-inline-bg) !important;
+  color: var(--ot-code-inline-text) !important;
+  border: 1px solid var(--ot-border) !important;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 88%;
+  font-family: 'Consolas', 'Fira Code', 'Monaco', monospace;
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* Code Blocks */
+.rst-content .highlight {
+  background: #11171d !important;
+  border: 1px solid var(--ot-border);
+  border-radius: 6px;
+  margin: 1.2rem 0;
+}
+
+.rst-content .highlight pre {
+  color: #e4f1ed !important;
+  font-family: 'Consolas', 'Fira Code', monospace;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+/* Admonitions (Callouts) */
+.rst-content .admonition {
+  border-radius: 4px;
+  border-width: 1px;
+  border-left-width: 4px;
+  margin: 1.4rem 0;
+  padding: 0.9rem 1.2rem;
+}
+
+.rst-content .admonition.note {
+  border-color: var(--ot-river-teal) !important;
+  background-color: rgba(31, 118, 109, 0.08) !important;
+}
+
+.rst-content .admonition.note .admonition-title {
+  background-color: transparent !important;
+  color: var(--ot-river-teal) !important;
+  font-weight: 700;
+}
+
+.rst-content .admonition.warning,
+.rst-content .admonition.important {
+  border-color: var(--ot-trail-clay) !important;
+  background-color: rgba(191, 104, 41, 0.08) !important;
+}
+
+.rst-content .admonition.warning .admonition-title,
+.rst-content .admonition.important .admonition-title {
+  background-color: transparent !important;
+  color: var(--ot-trail-clay) !important;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Theme Switcher Button
+   ========================================================================== */
+
+.otterus-theme-container {
+  display: flex;
+  justify-content: center;
+  margin: 0.75rem 0 0.5rem 0;
+}
+
+.otterus-theme-btn {
+  display: inline-flex;
+  align-items: center;
+  background: var(--ot-sidebar-search);
+  color: #f1f8f6;
+  border: 1px solid var(--ot-sidebar-border);
+  border-radius: 18px;
+  padding: 5px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease;
+}
+
+.otterus-theme-btn:hover {
+  background: var(--ot-river-teal);
+  color: #ffffff;
+  border-color: var(--ot-river-teal);
+  transform: translateY(-1px);
+}
+
+.otterus-theme-btn:active {
+  transform: translateY(0);
+}
+
+/* Footer & Buttons */
+footer {
+  color: var(--ot-text-muted) !important;
+  border-top: 1px solid var(--ot-border) !important;
+  padding-top: 1.5rem;
+  margin-top: 3rem;
+  font-size: 0.85rem;
+}
+
+.rst-footer-buttons .btn {
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+}
+
+.rst-footer-buttons .btn-neutral {
+  background-color: var(--ot-table-head-bg) !important;
+  color: var(--ot-text-main) !important;
+  border: 1px solid var(--ot-border) !important;
+}
+
+.rst-footer-buttons .btn-neutral:hover {
+  background-color: var(--ot-river-teal) !important;
+  color: #ffffff !important;
+  border-color: var(--ot-river-teal) !important;
+}

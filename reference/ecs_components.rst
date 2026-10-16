@@ -1,0 +1,579 @@
+ECS Components Reference
+========================
+
+In Otterus2D, components are plain data structures (PODs) managed by EnTT. They contain no gameplay logic; logic is handled exclusively by systems.
+
+.. image:: ../media/diagrams/ecs_architecture.svg
+   :alt: ECS Architecture Data Flow
+   :align: center
+   :width: 100%
+
+----
+
+Component Summary
+-----------------
+
+.. list-table::
+   :widths: 25 20 30 25
+   :header-rows: 1
+
+   * - Component
+     - Lua Usertype
+     - Purpose
+     - Handled By
+   * - ``TransformComponent``
+     - ``Transform``
+     - World position, scale, and rotation.
+     - ``RenderSystem``, ``PhysicsSystem``
+   * - ``SpriteComponent``
+     - ``Sprite``
+     - Texture rendering, dimensions, UV coordinates, layer sorting.
+     - ``RenderSystem``
+   * - ``AnimationComponent``
+     - ``Animation``
+     - Frame-based sprite sheet animation parameters.
+     - ``AnimationSystem``
+   * - ``BoxColliderComponent``
+     - ``BoxCollider``
+     - Axis-aligned bounding box for overlap detection.
+     - ``PhysicsSystem``
+   * - ``CircleColliderComponent``
+     - ``CircleCollider``
+     - Radial bounding area for overlap detection.
+     - ``PhysicsSystem``
+   * - ``PhysicsComponent``
+     - ``PhysicsComponent``
+     - Box2D rigid body configuration and simulation handle.
+     - ``PhysicsSystem``
+   * - ``RigidBodyComponent``
+     - ``RigidBody``
+     - Simple non-Box2D kinematic velocity vector.
+     - ``PhysicsSystem``
+   * - ``TextComponent``
+     - ``TextComponent``
+     - TrueType font rendering, text string, and color.
+     - ``RenderUISystem``
+   * - ``ScriptComponent``
+     - *(Internal)*
+     - C++ engine hook running ``main.lua``.
+     - ``ScriptingSystem``
+   * - ``Identification``
+     - *(Internal)*
+     - Entity name and group metadata; queried via ``entity:name()``.
+     - ``Registry``
+
+----
+
+1. TransformComponent (``Transform``)
+-------------------------------------
+
+Defines spatial transformation in 2D world space.
+
+Constructor Signatures
+~~~~~~~~~~~~~~~~~~~~~~
+
+* ``Transform(position: vec2, scale: vec2, rotation: float) -> Transform``
+* ``Transform(x: float, y: float, scale_x: float, scale_y: float, rotation: float) -> Transform``
+
+Fields
+~~~~~~
+
+.. list-table::
+   :widths: 20 20 20 40
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Default
+     - Description
+   * - ``position``
+     - ``vec2``
+     - ``(0.0, 0.0)``
+     - World coordinates (x, y).
+   * - ``scale``
+     - ``vec2``
+     - ``(1.0, 1.0)``
+     - Scaling factor along x and y axes.
+   * - ``rotation``
+     - ``float``
+     - ``0.0``
+     - Rotation angle in degrees.
+
+Methods
+~~~~~~~
+
+* ``transform:to_string() -> string``: Returns formatted diagnostic string of current values.
+
+Lua Usage
+~~~~~~~~~
+
+.. code-block:: lua
+
+   local transform = entity:add_component(
+       Transform(vec2(100.0, 200.0), vec2(1.0, 1.0), 0.0)
+   )
+
+   transform.position = vec2(150.0, 250.0)
+   transform.rotation = 45.0
+
+----
+
+2. SpriteComponent (``Sprite``)
+-------------------------------
+
+Defines visual appearance using a cached texture from ``AssetManager``.
+
+Constructor Signature
+~~~~~~~~~~~~~~~~~~~~~
+
+* ``Sprite(texture_name: string, width: float, height: float, start_x: int, start_y: int, layer: int) -> Sprite``
+
+Fields
+~~~~~~
+
+.. list-table::
+   :widths: 20 20 20 40
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Default
+     - Description
+   * - ``texture_name``
+     - ``string``
+     - ``""``
+     - Key of the loaded texture in ``AssetManager``.
+   * - ``width``
+     - ``float``
+     - ``0.0``
+     - Rendered width in world units.
+   * - ``height``
+     - ``float``
+     - ``0.0``
+     - Rendered height in world units.
+   * - ``start_x``
+     - ``int``
+     - ``0``
+     - Pixel X offset within sprite sheet.
+   * - ``start_y``
+     - ``int``
+     - ``0``
+     - Pixel Y offset within sprite sheet.
+   * - ``layer``
+     - ``int``
+     - ``0``
+     - Render sorting order (lower draws first).
+   * - ``color``
+     - ``Color``
+     - ``(255, 255, 255, 255)``
+     - RGBA tint multiplier.
+   * - ``uvs``
+     - ``UVs``
+     - ``{ u=0, v=0, uv_width=0, uv_height=0 }``
+     - UV coordinates structure.
+
+Methods
+~~~~~~~
+
+.. list-table::
+   :widths: 35 65
+   :header-rows: 1
+
+   * - Signature
+     - Description
+   * - ``sprite:generate_uvs() -> void``
+     - Computes texture coordinates based on texture sheet dimensions.
+   * - ``sprite:to_string() -> string``
+     - Returns formatted debug representation.
+
+Lua Usage
+~~~~~~~~~
+
+.. code-block:: lua
+
+   local sprite = entity:add_component(
+       Sprite("player_tex", 32.0, 32.0, 0, 0, 1)
+   )
+   sprite:generate_uvs()
+
+----
+
+3. AnimationComponent (``Animation``)
+-------------------------------------
+
+Cycles UV coordinates of a ``Sprite`` across frames in a sprite sheet.
+
+Constructor Signature
+~~~~~~~~~~~~~~~~~~~~~
+
+* ``Animation([num_frames: int = 1, frame_rate: int = 1, frame_offset: int = 0, is_vertical: bool = false, looped: bool = false]) -> Animation``
+
+Fields
+~~~~~~
+
+.. list-table::
+   :widths: 25 15 15 45
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Default
+     - Description
+   * - ``num_frames``
+     - ``int``
+     - ``1``
+     - Total number of animation frames.
+   * - ``frame_rate``
+     - ``int``
+     - ``1``
+     - Playback speed in frames per second.
+   * - ``frame_Offset``
+     - ``int``
+     - ``0``
+     - Starting frame index.
+   * - ``current_frame``
+     - ``int``
+     - ``0``
+     - Currently active frame index.
+   * - ``is_vertical``
+     - ``bool``
+     - ``false``
+     - True if frames are stacked vertically.
+   * - ``looped``
+     - ``bool``
+     - ``false``
+     - True to loop playback indefinitely.
+
+Methods
+~~~~~~~
+
+* ``anim:reset() -> void``: Resets current frame to 0 and updates the start time.
+* ``anim:to_string() -> string``: Returns diagnostic animation state.
+
+Lua Usage
+~~~~~~~~~
+
+.. code-block:: lua
+
+   local anim = entity:add_component(
+       Animation(6, 12, 0, false, true)
+   )
+   anim:reset()
+
+----
+
+4. BoxColliderComponent (``BoxCollider``)
+-----------------------------------------
+
+Defines an axis-aligned rectangular boundary for simple trigger or distance queries.
+
+Constructor Signature
+~~~~~~~~~~~~~~~~~~~~~
+
+* ``BoxCollider(width: int, height: int, offset: vec2) -> BoxCollider``
+
+Fields
+~~~~~~
+
+.. list-table::
+   :widths: 20 20 20 40
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Default
+     - Description
+   * - ``width``
+     - ``int``
+     - ``1``
+     - Box width in pixels/units.
+   * - ``height``
+     - ``int``
+     - ``1``
+     - Box height in pixels/units.
+   * - ``offset``
+     - ``vec2``
+     - ``(0.0, 0.0)``
+     - Offset relative to entity transform.
+   * - ``is_colliding``
+     - ``bool``
+     - ``false``
+     - Flag set when an intersection occurs.
+
+Methods
+~~~~~~~
+
+* ``box:to_string() -> string``: Returns formatted diagnostic string.
+
+Lua Usage
+~~~~~~~~~
+
+.. code-block:: lua
+
+   local box = entity:add_component(
+       BoxCollider(32, 32, vec2(0.0, 0.0))
+   )
+
+----
+
+5. CircleColliderComponent (``CircleCollider``)
+-----------------------------------------------
+
+Defines a radial boundary for simple distance-based collision queries.
+
+Constructor Signatures
+~~~~~~~~~~~~~~~~~~~~~~
+
+* ``CircleCollider(radius: float) -> CircleCollider``
+* ``CircleCollider(radius: float, offset: vec2) -> CircleCollider``
+
+Fields
+~~~~~~
+
+.. list-table::
+   :widths: 20 20 20 40
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Default
+     - Description
+   * - ``radius``
+     - ``float``
+     - ``0.0``
+     - Radius of the collision circle.
+   * - ``offset``
+     - ``vec2``
+     - ``(0.0, 0.0)``
+     - Center offset relative to transform.
+   * - ``is_colliding``
+     - ``bool``
+     - ``false``
+     - Flag set when an intersection occurs.
+
+Methods
+~~~~~~~
+
+* ``circle:to_string() -> string``: Returns formatted diagnostic string.
+
+Lua Usage
+~~~~~~~~~
+
+.. code-block:: lua
+
+   local circle = entity:add_component(CircleCollider(16.0))
+
+----
+
+6. PhysicsComponent (``PhysicsComponent``)
+------------------------------------------
+
+Wraps a Box2D physical body (``b2Body``) for full rigid-body dynamics, forces, and contacts.
+
+Constructor Signature
+~~~~~~~~~~~~~~~~~~~~~
+
+* ``PhysicsComponent.new(attribs: PhysicsAttributes) -> PhysicsComponent``
+
+Attributes (``PhysicsAttributes``)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 25 20 25 30
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Default
+     - Description
+   * - ``type``
+     - ``BodyType``
+     - ``BodyType.STATIC``
+     - Body mode: ``STATIC``, ``KINEMATIC``, ``DYNAMIC``.
+   * - ``density``
+     - ``float``
+     - ``1.0``
+     - Material mass density.
+   * - ``friction``
+     - ``float``
+     - ``0.2``
+     - Surface friction coefficient.
+   * - ``restitution``
+     - ``float``
+     - ``0.2``
+     - Bounciness (restitution coefficient).
+   * - ``gravityScale``
+     - ``float``
+     - ``1.0``
+     - Multiplier for global gravity.
+   * - ``isSensor``
+     - ``bool``
+     - ``false``
+     - If true, detects overlap without physical reaction.
+   * - ``fixedRotation``
+     - ``bool``
+     - ``true``
+     - Prevents rotational torque from external forces.
+   * - ``boxShape``
+     - ``bool``
+     - ``true``
+     - True for box fixture; false for circle.
+   * - ``boxSize``
+     - ``vec2``
+     - ``(0.0, 0.0)``
+     - Width and height if ``boxShape`` is true.
+   * - ``radius``
+     - ``float``
+     - ``0.0``
+     - Circle radius if ``circle`` is true.
+   * - ``objectData``
+     - ``ObjectData``
+     - ``{}``
+     - Contact metadata passed to ``ContactListener``.
+
+Runtime Methods
+~~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 45 55
+   :header-rows: 1
+
+   * - Signature
+     - Description
+   * - ``physics:linear_impulse(impulse: vec2) -> void``
+     - Applies sudden directional impulse force.
+   * - ``physics:angular_impulse(impulse: float) -> void``
+     - Applies rotational torque impulse.
+   * - ``physics:set_linear_velocity(velocity: vec2) -> void``
+     - Assigns body linear velocity vector.
+   * - ``physics:get_linear_velocity() -> vec2``
+     - Returns current body linear velocity vector.
+   * - ``physics:set_angular_velocity(velocity: float) -> void``
+     - Assigns rotational velocity.
+   * - ``physics:get_angular_velocity() -> float``
+     - Returns current rotational velocity.
+   * - ``physics:set_gravity_scale(scale: float) -> void``
+     - Overrides global gravity scale for this body.
+   * - ``physics:set_transform(position: vec2) -> void``
+     - Teleports body to target world position.
+
+Lua Usage
+~~~~~~~~~
+
+.. code-block:: lua
+
+   local attr = PhysicsAttributes.new()
+   attr.type = BodyType.DYNAMIC
+   attr.density = 1.0
+   attr.friction = 0.3
+   attr.boxShape = true
+   attr.boxSize = vec2(32.0, 32.0)
+   attr.fixedRotation = true
+
+   local physics = entity:add_component(PhysicsComponent.new(attr))
+   physics:linear_impulse(vec2(0.0, -5.0))
+
+----
+
+7. RigidBodyComponent (``RigidBody``)
+-------------------------------------
+
+Lightweight, non-Box2D kinematic velocity component for simple programmatic movement.
+
+Constructor Signature
+~~~~~~~~~~~~~~~~~~~~~
+
+* ``RigidBody(velocity: vec2) -> RigidBody``
+
+Fields
+~~~~~~
+
+.. list-table::
+   :widths: 20 20 20 40
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Default
+     - Description
+   * - ``velocity``
+     - ``vec2``
+     - ``(0.0, 0.0)``
+     - Linear velocity vector in world units.
+
+Methods
+~~~~~~~
+
+* ``rb:to_string() -> string``: Returns formatted diagnostic string.
+
+Lua Usage
+~~~~~~~~~
+
+.. code-block:: lua
+
+   local rb = entity:add_component(RigidBody(vec2(150.0, 0.0)))
+   rb.velocity = vec2(200.0, 0.0)
+
+----
+
+8. TextComponent (``TextComponent``)
+------------------------------------
+
+Renders TrueType text using a font loaded in ``AssetManager``.
+
+Constructor Signatures
+~~~~~~~~~~~~~~~~~~~~~~
+
+* ``TextComponent(font_name: string, text: string) -> TextComponent``
+* ``TextComponent(text: string, font_name: string, padding: int, wrap: float, color: Color) -> TextComponent``
+
+Fields
+~~~~~~
+
+.. list-table::
+   :widths: 20 20 20 40
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Default
+     - Description
+   * - ``textStr``
+     - ``string``
+     - ``""``
+     - The string content to render.
+   * - ``fontName``
+     - ``string``
+     - ``"pixel"``
+     - Font identifier in ``AssetManager``.
+   * - ``padding``
+     - ``int``
+     - ``0``
+     - Pixel spacing between characters.
+   * - ``wrap``
+     - ``float``
+     - ``-1.0``
+     - Max width before wrapping (``-1.0`` disables wrap).
+   * - ``color``
+     - ``Color``
+     - ``(255, 255, 255, 255)``
+     - Text color tint.
+   * - ``isHidden``
+     - ``bool``
+     - ``false``
+     - Toggle visibility without removing component.
+
+Methods
+~~~~~~~
+
+* ``text:to_string() -> string``: Returns formatted diagnostic string.
+
+Lua Usage
+~~~~~~~~~
+
+.. code-block:: lua
+
+   local text = entity:add_component(
+       TextComponent("pixel", "Score: 100")
+   )
+   text.textStr = "Score: 250"
