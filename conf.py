@@ -45,9 +45,9 @@ html_static_path = ["_static"]
 # html_logo = "_static/otterus_logo.svg"
 html_favicon = "_static/otterus_favicon.svg"
 
-# Custom stylesheets and scripts (Theme Switcher)
+# Custom stylesheets and scripts
 html_css_files = ["custom.css"]
-html_js_files = ["theme_toggle.js"]
+html_js_files = []
 
 html_theme_options = {
     "collapse_navigation": False,

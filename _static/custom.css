@@ -1,82 +1,45 @@
 /* ==========================================================================
    Otterus2D Documentation Theme (Modeled after Godot Docs)
    Centralized Layout with Left/Right Gutter Margins & High-Contrast Typography
+   Permanent Dark Theme with Stationary Header, Scrollable Menu & Sharp Dividers
    ========================================================================== */
 
-:root {
+:root,
+[data-theme="dark"] {
   --ot-transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 
   /* ------------------------------------------------------------------------
-     MILD THEME (Godot-style Clean Slate & Riverbed)
+     GODOT-STYLE OBSIDIAN SLATE & DEEP WATERS (DEFAULT DARK MODE)
      ------------------------------------------------------------------------ */
-  --ot-gutter-bg: #e2ebe9;                /* Outer left/right space background */
-  --ot-gutter-shadow: rgba(0, 0, 0, 0.09);
-  --ot-bg-content: #f8fafb;               /* Central content canvas (mild, glare-free) */
-  --ot-text-main: #2c3e50;                /* Deep slate reading text */
-  --ot-text-muted: #627d98;
-  --ot-heading: #1a2936;                 /* River stone heading */
-
-  /* River & Trail Accents */
-  --ot-river-teal: #1f766d;              /* River Teal for links */
-  --ot-river-teal-hover: #134f49;
-  --ot-trail-clay: #b86022;              /* Trail Amber / Clay for alerts */
-  --ot-trail-amber: #d97724;
-
-  /* Sidebar (Godot Dark River-Slate) */
-  --ot-sidebar-bg: #202c39;              /* Deep slate sidebar */
-  --ot-sidebar-search: #2b3a4a;          /* Search input background */
-  --ot-sidebar-caption: #8fa6b8;         /* Uppercase section category text */
-  --ot-sidebar-text: #c8d6e5;            /* Inactive menu link text */
-  --ot-sidebar-hover-bg: #2a3a4c;        /* Menu link hover background */
-  --ot-sidebar-sub-bg: #18222d;          /* Submenu (level 2+) background */
-  --ot-sidebar-sub-text: #a8becf;        /* Submenu link text */
-  --ot-sidebar-active-parent-bg: #263647;/* Expanded category background */
-  --ot-sidebar-active-item-bg: #2e4357;  /* Active page link background */
-  --ot-sidebar-active-text: #5eead4;     /* Radiant mint text for active item */
-  --ot-sidebar-border: #283747;
-
-  /* Tables */
-  --ot-table-head-bg: #edf4f3;
-  --ot-table-head-text: #162e33;
-  --ot-table-zebra-bg: #f2f7f6;
-  --ot-table-hover-bg: #e5efee;
-  --ot-border: #dbe4e6;
-  --ot-border-subtle: #e8eff1;
-
-  /* Code & Breadcrumbs */
-  --ot-code-inline-bg: #edf3f3;
-  --ot-code-inline-text: #964e1e;
-  --ot-breadcrumb-current: #1a2936;
-}
-
-/* --------------------------------------------------------------------------
-   DARK MODE (Godot-style Dark Slate & Deep Waters)
-   -------------------------------------------------------------------------- */
-[data-theme="dark"] {
   --ot-gutter-bg: #090e12;                /* Outer left/right space background */
-  --ot-gutter-shadow: rgba(0, 0, 0, 0.55);
-  --ot-bg-content: #161c22;               /* Obsidian slate content canvas */
-  --ot-text-main: #cdd9e5;                /* Soft moonlight text */
+  --ot-gutter-shadow: rgba(0, 0, 0, 0.65);
+  --ot-bg-content: #161c22;               /* Central obsidian content canvas */
+  --ot-text-main: #cdd9e5;                /* High-contrast soft moonlight text */
   --ot-text-muted: #76899c;
   --ot-heading: #f0f6fc;
 
-  --ot-river-teal: #4ecdc4;              /* Glowing aqua-teal for links */
+  /* River & Trail Accents */
+  --ot-river-teal: #4ecdc4;              /* Glowing aqua-teal for links & parent active line */
   --ot-river-teal-hover: #7ae7df;
-  --ot-trail-clay: #e5934c;
-  --ot-trail-amber: #f6ad55;
+  --ot-trail-clay: #e5934c;              /* Trail Amber / Clay for alerts */
+  --ot-trail-amber: #f6ad55;             /* Amber for active child item line */
 
   /* Sidebar (Obsidian Slate) */
-  --ot-sidebar-bg: #0e1318;
-  --ot-sidebar-search: #172029;
-  --ot-sidebar-caption: #63778a;
-  --ot-sidebar-text: #8fa3b7;
-  --ot-sidebar-hover-bg: #1a242f;
-  --ot-sidebar-sub-bg: #090d10;
-  --ot-sidebar-sub-text: #788c9f;
-  --ot-sidebar-active-parent-bg: #141d26;
-  --ot-sidebar-active-item-bg: #1c2936;
-  --ot-sidebar-active-text: #4ecdc4;
-  --ot-sidebar-border: #1a222a;
+  --ot-sidebar-bg: #0e1318;              /* Deep obsidian sidebar */
+  --ot-sidebar-search: #172029;          /* Search input background */
+  --ot-sidebar-caption: #8fa3b7;         /* High-contrast uppercase category text */
+  --ot-sidebar-text: #9eb5ca;            /* Inactive menu link text */
+  --ot-sidebar-hover-bg: #1c2733;        /* Menu link hover background */
+  --ot-sidebar-sub-bg: #090d10;          /* Submenu (level 2+) background */
+  --ot-sidebar-sub-text: #788c9f;        /* Submenu link text */
+  --ot-sidebar-active-parent-bg: #141d26;/* Expanded category background */
+  --ot-sidebar-active-item-bg: #1c2936;  /* Active page link background */
+  --ot-sidebar-active-text: #4ecdc4;     /* Radiant aqua text for active item */
+
+  /* Sharp Separators & Borders */
+  --ot-sidebar-border: #26384a;          /* Outer sidebar container border */
+  --ot-sidebar-border-sharp: #2e4256;    /* Crisp, high-contrast line separators */
+  --ot-sidebar-border-item: rgba(255, 255, 255, 0.08); /* Clean dividers between menu items */
 
   /* Tables */
   --ot-table-head-bg: #1f2832;
@@ -98,6 +61,10 @@
    right of the content area on desktop displays.
    ========================================================================== */
 
+html {
+  background-color: var(--ot-gutter-bg) !important;
+}
+
 body {
   background-color: var(--ot-gutter-bg) !important;
   color: var(--ot-text-main) !important;
@@ -118,7 +85,7 @@ body {
     min-height: 100vh !important;
   }
 
-  /* Fixed sidebar stays pinned in place during content scroll */
+  /* Fixed stationary sidebar: pinned to viewport, outer container never scrolls */
   .wy-nav-side {
     position: fixed !important;
     top: 0 !important;
@@ -127,15 +94,67 @@ body {
     width: 300px !important;
     left: max(0px, calc(50vw - 680px)) !important;
     z-index: 200 !important;
-    border-left: 1px solid var(--ot-sidebar-border) !important;
-    border-right: 1px solid var(--ot-sidebar-border) !important;
+    border-left: 1px solid var(--ot-sidebar-border-sharp) !important;
+    border-right: 1px solid var(--ot-sidebar-border-sharp) !important;
+    overflow: hidden !important;
+    background: var(--ot-sidebar-bg) !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
   }
 
+  .wy-nav-side::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  /* Vertical flex container for the sidebar components */
   .wy-side-scroll {
     width: 300px !important;
-    height: 100% !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    background: var(--ot-sidebar-bg) !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  .wy-side-scroll::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  /* Stationary pinned header: Title & Search bar stay frozen in place */
+  .wy-side-nav-search {
+    flex-shrink: 0 !important;
+    position: relative !important;
+    top: 0 !important;
+    z-index: 10 !important;
+    background: var(--ot-sidebar-bg) !important;
+    padding: 1.4rem 1.2rem 1.1rem 1.2rem !important;
+    border-bottom: 1px solid var(--ot-sidebar-border-sharp) !important;
+    text-align: center;
+  }
+
+  /* The headings, subtitles, and toctree links scroll without visible scrollbar */
+  .wy-menu-vertical {
+    flex: 1 1 auto !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
+    height: 100% !important;
+    padding: 0.5rem 0 3.5rem 0 !important;
+    background: var(--ot-sidebar-bg) !important;
+    scrollbar-width: none !important; /* Firefox: completely hide scrollbar */
+    -ms-overflow-style: none !important; /* IE / Edge: completely hide scrollbar */
+  }
+
+  .wy-menu-vertical::-webkit-scrollbar {
+    display: none !important; /* WebKit (Chrome, Safari, Edge): completely hide scrollbar */
+    width: 0 !important;
+    height: 0 !important;
   }
 
   /* Content area scrolls independently and stays aligned with sidebar */
@@ -163,6 +182,52 @@ body {
 @media screen and (max-width: 991px) {
   body.wy-body-for-nav {
     background-color: var(--ot-bg-content) !important;
+  }
+
+  .wy-nav-side {
+    height: 100vh !important;
+    overflow: hidden !important;
+    border-right: 1px solid var(--ot-sidebar-border-sharp) !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  .wy-nav-side::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+  }
+
+  .wy-side-scroll {
+    width: 300px !important;
+    height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  .wy-side-scroll::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+  }
+
+  .wy-side-nav-search {
+    flex-shrink: 0 !important;
+    border-bottom: 1px solid var(--ot-sidebar-border-sharp) !important;
+  }
+
+  .wy-menu-vertical {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  .wy-menu-vertical::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
   }
 
   .wy-nav-content-wrap {
@@ -227,6 +292,7 @@ body {
 .wy-nav-top {
   background: var(--ot-sidebar-bg) !important;
   color: #ffffff !important;
+  border-bottom: 1px solid var(--ot-sidebar-border-sharp) !important;
 }
 
 .wy-nav-top a {
@@ -234,20 +300,19 @@ body {
 }
 
 /* ==========================================================================
-   SIDEBAR NAVIGATION: GODOT STYLE & STRICT BOX MODEL
+   SIDEBAR NAVIGATION: GODOT STYLE & SHARP DIVIDERS
    ========================================================================== */
 
 .wy-nav-side,
 .wy-side-scroll {
   background: var(--ot-sidebar-bg) !important;
-  border-right: 1px solid var(--ot-sidebar-border);
   transition: var(--ot-transition);
 }
 
 .wy-side-nav-search {
   background: var(--ot-sidebar-bg) !important;
-  padding: 1.2rem 1.2rem 1rem 1.2rem !important;
-  border-bottom: 1px solid var(--ot-sidebar-border);
+  padding: 1.4rem 1.2rem 1.1rem 1.2rem !important;
+  border-bottom: 1px solid var(--ot-sidebar-border-sharp) !important;
   text-align: center;
 }
 
@@ -257,17 +322,17 @@ body {
   font-size: 1.3rem;
   letter-spacing: 0.5px;
   display: block;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .wy-side-nav-search input[type="text"] {
   background: var(--ot-sidebar-search) !important;
-  border: 1px solid var(--ot-sidebar-border) !important;
+  border: 1px solid var(--ot-sidebar-border-sharp) !important;
   color: #f4fbf9 !important;
   border-radius: 20px !important;
-  padding: 6px 14px !important;
+  padding: 7px 14px !important;
   font-size: 0.88rem !important;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .wy-side-nav-search input[type="text"]:focus {
@@ -289,27 +354,39 @@ body {
   margin: 0 !important;
 }
 
-/* Category Captions (e.g. GETTING STARTED, TUTORIALS) */
+/* Category Captions (e.g. GETTING STARTED, TUTORIALS) with Sharp Separators */
 .wy-menu-vertical p.caption {
   display: block !important;
   color: var(--ot-sidebar-caption) !important;
   text-transform: uppercase !important;
   font-size: 0.72rem !important;
   font-weight: 800 !important;
-  letter-spacing: 1.2px !important;
-  padding: 18px 16px 8px 16px !important;
-  margin: 0 !important;
+  letter-spacing: 1.3px !important;
+  padding: 16px 16px 8px 16px !important;
+  margin: 4px 0 0 0 !important;
   line-height: 1.4 !important;
   position: relative !important;
   z-index: 2 !important;
+  border-top: 1px solid var(--ot-sidebar-border-sharp) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.45) !important;
 }
 
-/* Base Navigation Links (Strict Block Box-Model to prevent any overlapping) */
+.wy-menu-vertical p.caption:first-of-type {
+  border-top: none !important;
+  margin-top: 0 !important;
+}
+
+/* Sharp Dividers between Top-Level Navigation Items */
+.wy-menu-vertical > ul > li.toctree-l1 {
+  border-bottom: 1px solid var(--ot-sidebar-border-item) !important;
+}
+
+/* Base Navigation Links (Strict Block Box-Model with Positive Padding) */
 .wy-menu-vertical li a {
   display: block !important;
   color: var(--ot-sidebar-text) !important;
   background: transparent !important;
-  padding: 7px 16px !important;
+  padding: 8px 16px !important;
   font-size: 0.88rem !important;
   line-height: 1.45 !important;
   border: none !important;
@@ -325,7 +402,36 @@ body {
   color: #ffffff !important;
 }
 
-/* Expanded active section / parent page */
+/* ==========================================================================
+   TOCTREE PLUS/MINUS EXPANSION ICONS (ISOLATED FROM SIDELINE)
+   ========================================================================== */
+
+.wy-menu-vertical li button.toctree-expand {
+  display: inline-block !important;
+  float: left !important;
+  margin-left: 0 !important;
+  margin-right: 9px !important;
+  margin-top: 2px !important;
+  line-height: inherit !important;
+  color: var(--ot-sidebar-caption) !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  font-size: 0.85rem !important;
+  transition: color 0.15s ease !important;
+}
+
+.wy-menu-vertical li button.toctree-expand:hover {
+  color: var(--ot-river-teal) !important;
+}
+
+.wy-menu-vertical li.current > a button.toctree-expand,
+.wy-menu-vertical li.on a button.toctree-expand {
+  color: var(--ot-river-teal) !important;
+}
+
+/* Expanded active section / parent page with sharp aqua sideline */
 .wy-menu-vertical li.current > a,
 .wy-menu-vertical li.on a {
   background: var(--ot-sidebar-active-parent-bg) !important;
@@ -347,7 +453,7 @@ body {
 .wy-menu-vertical li.toctree-l3 a {
   background: var(--ot-sidebar-sub-bg) !important;
   color: var(--ot-sidebar-sub-text) !important;
-  padding: 6px 16px 6px 26px !important;
+  padding: 6px 16px 6px 28px !important;
   font-size: 0.84rem !important;
 }
 
@@ -358,7 +464,7 @@ body {
   color: #ffffff !important;
 }
 
-/* Active sub-item link */
+/* Active sub-item link with sharp amber sideline */
 .wy-menu-vertical li.current li.current > a,
 .wy-menu-vertical li.toctree-l2.current > a,
 .wy-menu-vertical li.toctree-l3.current > a {
@@ -371,7 +477,7 @@ body {
 /* Level 3 deeper indentation */
 .wy-menu-vertical li.current li.current li a,
 .wy-menu-vertical li.toctree-l3 a {
-  padding-left: 36px !important;
+  padding-left: 40px !important;
 }
 
 /* ==========================================================================
@@ -544,7 +650,7 @@ table.docutils td {
 
 .rst-content .admonition.note {
   border-color: var(--ot-river-teal) !important;
-  background-color: rgba(31, 118, 109, 0.08) !important;
+  background-color: rgba(78, 205, 196, 0.08) !important;
 }
 
 .rst-content .admonition.note .admonition-title {
@@ -556,7 +662,7 @@ table.docutils td {
 .rst-content .admonition.warning,
 .rst-content .admonition.important {
   border-color: var(--ot-trail-clay) !important;
-  background-color: rgba(191, 104, 41, 0.08) !important;
+  background-color: rgba(229, 147, 76, 0.08) !important;
 }
 
 .rst-content .admonition.warning .admonition-title,
@@ -566,40 +672,10 @@ table.docutils td {
   font-weight: 700;
 }
 
-/* ==========================================================================
-   Theme Switcher Button
-   ========================================================================== */
-
-.otterus-theme-container {
-  display: flex;
-  justify-content: center;
-  margin: 0.75rem 0 0.5rem 0;
-}
-
+/* Theme Switcher Button Removed */
+.otterus-theme-container,
 .otterus-theme-btn {
-  display: inline-flex;
-  align-items: center;
-  background: var(--ot-sidebar-search);
-  color: #f1f8f6;
-  border: 1px solid var(--ot-sidebar-border);
-  border-radius: 18px;
-  padding: 5px 16px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-  transition: all 0.2s ease;
-}
-
-.otterus-theme-btn:hover {
-  background: var(--ot-river-teal);
-  color: #ffffff;
-  border-color: var(--ot-river-teal);
-  transform: translateY(-1px);
-}
-
-.otterus-theme-btn:active {
-  transform: translateY(0);
+  display: none !important;
 }
 
 /* Footer & Buttons */
