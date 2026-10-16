@@ -47,11 +47,11 @@ html_favicon = "_static/otterus_favicon.svg"
 
 # Custom stylesheets and scripts
 html_css_files = ["custom.css"]
-html_js_files = []
+html_js_files = ["nav_pin.js"]
 
 html_theme_options = {
     "collapse_navigation": False,
-    "sticky_navigation": True,
+    "sticky_navigation": False,
     "navigation_depth": 4,
     "includehidden": True,
     "titles_only": False,
@@ -59,3 +59,4 @@ html_theme_options = {
 }
 
 html_show_sourcelink = False
+html_show_sphinx = False

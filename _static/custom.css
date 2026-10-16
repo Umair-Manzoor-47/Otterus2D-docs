@@ -1,58 +1,248 @@
 /* ==========================================================================
    Otterus2D Documentation Theme (Modeled after Godot Docs)
    Centralized Layout with Left/Right Gutter Margins & High-Contrast Typography
-   Permanent Dark Theme with Stationary Header, Scrollable Menu & Sharp Dividers
+   Multi-Palette Dark Otter Themes with Stationary Header, Otter Mascot & Sharp Lines
    ========================================================================== */
 
-:root,
-[data-theme="dark"] {
+:root {
   --ot-transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
 
-  /* ------------------------------------------------------------------------
-     GODOT-STYLE OBSIDIAN SLATE & DEEP WATERS (DEFAULT DARK MODE)
-     ------------------------------------------------------------------------ */
-  --ot-gutter-bg: #090e12;                /* Outer left/right space background */
-  --ot-gutter-shadow: rgba(0, 0, 0, 0.65);
-  --ot-bg-content: #161c22;               /* Central obsidian content canvas */
-  --ot-text-main: #cdd9e5;                /* High-contrast soft moonlight text */
-  --ot-text-muted: #76899c;
-  --ot-heading: #f0f6fc;
+/* --------------------------------------------------------------------------
+   PALETTE 0: TIMBER ESTUARY (BLEND OF DEEP TIMBER & ESTUARY MIST - DEFAULT)
+   The warmth of Deep Timber (otter-fur beige, dark peat charcoal) fused
+   with the crisp, architectural clarity of Estuary Mist (Godot-style dim
+   slate gray canvas and matte estuary water teal).
+   -------------------------------------------------------------------------- */
+:root,
+[data-theme="dark"],
+[data-otterus-theme="timber-estuary"] {
+  /* Canvas & Outer Gutters: Warm Charcoal-Peat Foundation */
+  --ot-gutter-bg: #191715;                /* Dark peat-timber gutter */
+  --ot-gutter-shadow: rgba(0, 0, 0, 0.7);
+  --ot-bg-content: #23211f;               /* Dim warm charcoal-bark gray canvas (richer timber feel) */
+  --ot-text-main: #eae4d8;                /* Warm otter-fur cream reading text */
+  --ot-text-muted: #928b80;               /* Warm muted sand */
+  --ot-heading: #faf6ee;                 /* Warm alabaster ivory headings */
 
   /* River & Trail Accents */
-  --ot-river-teal: #4ecdc4;              /* Glowing aqua-teal for links & parent active line */
-  --ot-river-teal-hover: #7ae7df;
-  --ot-trail-clay: #e5934c;              /* Trail Amber / Clay for alerts */
-  --ot-trail-amber: #f6ad55;             /* Amber for active child item line */
+  --ot-river-teal: #3ea898;              /* Deep estuary water teal */
+  --ot-river-teal-hover: #56c0b0;
+  --ot-trail-clay: #d88e49;              /* Rich otter timber clay / amber */
+  --ot-trail-amber: #e7a466;
 
-  /* Sidebar (Obsidian Slate) */
-  --ot-sidebar-bg: #0e1318;              /* Deep obsidian sidebar */
-  --ot-sidebar-search: #172029;          /* Search input background */
-  --ot-sidebar-caption: #8fa3b7;         /* High-contrast uppercase category text */
-  --ot-sidebar-text: #9eb5ca;            /* Inactive menu link text */
-  --ot-sidebar-hover-bg: #1c2733;        /* Menu link hover background */
-  --ot-sidebar-sub-bg: #090d10;          /* Submenu (level 2+) background */
-  --ot-sidebar-sub-text: #788c9f;        /* Submenu link text */
-  --ot-sidebar-active-parent-bg: #141d26;/* Expanded category background */
-  --ot-sidebar-active-item-bg: #1c2936;  /* Active page link background */
-  --ot-sidebar-active-text: #4ecdc4;     /* Radiant aqua text for active item */
+  /* Sidebar: Dark Peat & River Slate */
+  --ot-sidebar-bg: #151312;              /* Deep peat river slate */
+  --ot-sidebar-search: #1e1b19;          /* Search input */
+  --ot-sidebar-caption: #988d80;         /* Uppercase category text */
+  --ot-sidebar-text: #beb3a5;            /* Inactive link text */
+  --ot-sidebar-hover-bg: #24201c;        /* Hover background */
+  --ot-sidebar-sub-bg: #100f0d;          /* Submenu background */
+  --ot-sidebar-sub-text: #a09587;        /* Submenu link text */
+  --ot-sidebar-active-parent-bg: #231f1c;/* Active section parent */
+  --ot-sidebar-active-item-bg: #2c2723;  /* Active sub-item */
+  --ot-sidebar-active-text: #56c0b0;     /* Radiant estuary teal active text */
 
-  /* Sharp Separators & Borders */
-  --ot-sidebar-border: #26384a;          /* Outer sidebar container border */
-  --ot-sidebar-border-sharp: #2e4256;    /* Crisp, high-contrast line separators */
-  --ot-sidebar-border-item: rgba(255, 255, 255, 0.08); /* Clean dividers between menu items */
+  /* Sharp Lines & Borders: Warm Timber-Slate Dividers */
+  --ot-sidebar-border: #2e2924;
+  --ot-sidebar-border-sharp: #38322c;    /* Crisp, warm timber-stone line separators */
+  --ot-sidebar-border-item: rgba(255, 255, 255, 0.08);
 
   /* Tables */
-  --ot-table-head-bg: #1f2832;
-  --ot-table-head-text: #e6f6f2;
-  --ot-table-zebra-bg: #12181d;
-  --ot-table-hover-bg: #222d38;
-  --ot-border: #273442;
-  --ot-border-subtle: #1c2732;
+  --ot-table-head-bg: #2c2723;
+  --ot-table-head-text: #faf6ee;
+  --ot-table-zebra-bg: #1c1a18;
+  --ot-table-hover-bg: #332e29;
+  --ot-border: #38322c;
+  --ot-border-subtle: #292520;
 
   /* Code & Breadcrumbs */
-  --ot-code-inline-bg: #1e2936;
+  --ot-code-inline-bg: #2c2622;
+  --ot-code-inline-text: #e7a466;
+  --ot-breadcrumb-current: #faf6ee;
+}
+
+/* --------------------------------------------------------------------------
+   PALETTE 1: RIVERBED SLATE (GODOT-INSPIRED DIM SLATE & WET PEBBLE)
+   A calm, glare-free dark slate gray canvas with warm otter-cream text
+   and subdued river teal accents.
+   -------------------------------------------------------------------------- */
+[data-otterus-theme="riverbed"] {
+  /* Canvas & Outer Gutters */
+  --ot-gutter-bg: #181c21;                /* Outer side gutters: dark riverbed slate */
+  --ot-gutter-shadow: rgba(0, 0, 0, 0.65);
+  --ot-bg-content: #22272e;               /* Central content canvas: dimmer slate gray */
+  --ot-text-main: #e2ded7;                /* Warm otter-cream / light beige reading text */
+  --ot-text-muted: #828e9b;
+  --ot-heading: #f4f0e8;                 /* Crisp driftstone beige headings */
+
+  /* River & Trail Accents (Dim & Matte) */
+  --ot-river-teal: #48a999;              /* Subdued River Teal (not neon) */
+  --ot-river-teal-hover: #63c4b4;
+  --ot-trail-clay: #d68d4e;              /* Otter Trail Clay / Amber */
+  --ot-trail-amber: #e5a86d;
+
+  /* Sidebar */
+  --ot-sidebar-bg: #15181c;              /* Deep river slate */
+  --ot-sidebar-search: #1d2228;          /* Search input */
+  --ot-sidebar-caption: #8fa0b0;         /* Uppercase category text */
+  --ot-sidebar-text: #adbccb;            /* Inactive link text */
+  --ot-sidebar-hover-bg: #222931;        /* Hover background */
+  --ot-sidebar-sub-bg: #111417;          /* Submenu background */
+  --ot-sidebar-sub-text: #96a6b5;        /* Submenu link text */
+  --ot-sidebar-active-parent-bg: #1e252d;/* Active section parent */
+  --ot-sidebar-active-item-bg: #252e38;  /* Active sub-item */
+  --ot-sidebar-active-text: #59c7b6;     /* Active text */
+
+  /* Sharp Lines & Borders */
+  --ot-sidebar-border: #29313a;
+  --ot-sidebar-border-sharp: #323c46;    /* Crisp, defined line separators */
+  --ot-sidebar-border-item: rgba(255, 255, 255, 0.08);
+
+  /* Tables */
+  --ot-table-head-bg: #283038;
+  --ot-table-head-text: #f4f0e8;
+  --ot-table-zebra-bg: #1c2127;
+  --ot-table-hover-bg: #2d3640;
+  --ot-border: #323c46;
+  --ot-border-subtle: #262e36;
+
+  /* Code & Breadcrumbs */
+  --ot-code-inline-bg: #2a313a;
+  --ot-code-inline-text: #e5a86d;
+  --ot-breadcrumb-current: #f4f0e8;
+}
+
+/* --------------------------------------------------------------------------
+   PALETTE 2: DEEP TIMBER & PEAT (WARM OTTER PELT & BARK GRAY)
+   Deep dark peat tones with warm otter-fur beige and earthy trail clay.
+   -------------------------------------------------------------------------- */
+[data-otterus-theme="timber"] {
+  --ot-gutter-bg: #181513;                /* Dark peat bark */
+  --ot-gutter-shadow: rgba(0, 0, 0, 0.7);
+  --ot-bg-content: #221e1a;               /* Warm charcoal bark canvas */
+  --ot-text-main: #ede5d8;                /* Warm otter-fur beige text */
+  --ot-text-muted: #95877a;
+  --ot-heading: #fcf6ee;                 /* Soft ivory white headings */
+
+  --ot-river-teal: #d18a4a;              /* Warm trail clay primary */
+  --ot-river-teal-hover: #e5a265;
+  --ot-trail-clay: #589e90;              /* River willow teal */
+  --ot-trail-amber: #e8a262;
+
+  --ot-sidebar-bg: #14110f;              /* Deep peat obsidian */
+  --ot-sidebar-search: #1e1916;
+  --ot-sidebar-caption: #a39282;
+  --ot-sidebar-text: #c0b2a3;
+  --ot-sidebar-hover-bg: #25201b;
+  --ot-sidebar-sub-bg: #100e0c;
+  --ot-sidebar-sub-text: #a89a8c;
+  --ot-sidebar-active-parent-bg: #241e19;
+  --ot-sidebar-active-item-bg: #2e2620;
+  --ot-sidebar-active-text: #e8a262;
+
+  --ot-sidebar-border: #2d2621;
+  --ot-sidebar-border-sharp: #383029;
+  --ot-sidebar-border-item: rgba(255, 255, 255, 0.08);
+
+  --ot-table-head-bg: #2c2520;
+  --ot-table-head-text: #fcf6ee;
+  --ot-table-zebra-bg: #1c1815;
+  --ot-table-hover-bg: #342c26;
+  --ot-border: #383029;
+  --ot-border-subtle: #2a231e;
+
+  --ot-code-inline-bg: #2c2520;
+  --ot-code-inline-text: #e5a66a;
+  --ot-breadcrumb-current: #fcf6ee;
+}
+
+/* --------------------------------------------------------------------------
+   PALETTE 3: ESTUARY MIST & SILT (COOL ARCHITECTURAL GODOT GRAY)
+   Classic Godot-matched cool stone grays with estuary water teal.
+   -------------------------------------------------------------------------- */
+[data-otterus-theme="estuary"] {
+  --ot-gutter-bg: #1e2227;                /* Godot charcoal gray */
+  --ot-gutter-shadow: rgba(0, 0, 0, 0.65);
+  --ot-bg-content: #272c33;               /* Godot dimmer slate gray canvas */
+  --ot-text-main: #e2e8f0;                /* Cool mist light gray/white text */
+  --ot-text-muted: #8492a6;
+  --ot-heading: #f1f5f9;                 /* Crisp cool white headings */
+
+  --ot-river-teal: #38b2ac;              /* Estuary water teal */
+  --ot-river-teal-hover: #4fd1c5;
+  --ot-trail-clay: #dd6b20;              /* Trail ochre */
+  --ot-trail-amber: #f6ad55;
+
+  --ot-sidebar-bg: #191d22;              /* Dark slate */
+  --ot-sidebar-search: #22272d;
+  --ot-sidebar-caption: #8d9ba8;
+  --ot-sidebar-text: #b3c1cf;
+  --ot-sidebar-hover-bg: #252b33;
+  --ot-sidebar-sub-bg: #14171b;
+  --ot-sidebar-sub-text: #96a5b5;
+  --ot-sidebar-active-parent-bg: #212830;
+  --ot-sidebar-active-item-bg: #2a333d;
+  --ot-sidebar-active-text: #4fd1c5;
+
+  --ot-sidebar-border: #2c343e;
+  --ot-sidebar-border-sharp: #373e48;
+  --ot-sidebar-border-item: rgba(255, 255, 255, 0.08);
+
+  --ot-table-head-bg: #2e353f;
+  --ot-table-head-text: #f1f5f9;
+  --ot-table-zebra-bg: #20252b;
+  --ot-table-hover-bg: #343c47;
+  --ot-border: #373e48;
+  --ot-border-subtle: #293038;
+
+  --ot-code-inline-bg: #2f363f;
   --ot-code-inline-text: #f6ad55;
-  --ot-breadcrumb-current: #f0f6fc;
+  --ot-breadcrumb-current: #f1f5f9;
+}
+
+/* --------------------------------------------------------------------------
+   PALETTE 4: OTTER DUSK (DEEP RIVERBED CHARCOAL & SANDSTONE)
+   Deepest riverbed obsidian with high-contrast sandstone beige text.
+   -------------------------------------------------------------------------- */
+[data-otterus-theme="obsidian"] {
+  --ot-gutter-bg: #121518;                /* Dusk slate */
+  --ot-gutter-shadow: rgba(0, 0, 0, 0.75);
+  --ot-bg-content: #1b1f24;               /* Dim riverbed charcoal */
+  --ot-text-main: #eae5dc;                /* Sandstone beige */
+  --ot-text-muted: #7b8896;
+  --ot-heading: #ffffff;                 /* Pure crisp white */
+
+  --ot-river-teal: #45a298;              /* Subtle water teal */
+  --ot-river-teal-hover: #66c4b9;
+  --ot-trail-clay: #c97f48;              /* River pebble clay */
+  --ot-trail-amber: #e5a468;
+
+  --ot-sidebar-bg: #0f1214;              /* Dusk obsidian */
+  --ot-sidebar-search: #171b20;
+  --ot-sidebar-caption: #7f8f9e;
+  --ot-sidebar-text: #a4b4c4;
+  --ot-sidebar-hover-bg: #1c2127;
+  --ot-sidebar-sub-bg: #0b0d0e;
+  --ot-sidebar-sub-text: #8999a8;
+  --ot-sidebar-active-parent-bg: #181d22;
+  --ot-sidebar-active-item-bg: #20272e;
+  --ot-sidebar-active-text: #5ec4b7;
+
+  --ot-sidebar-border: #222830;
+  --ot-sidebar-border-sharp: #293038;
+  --ot-sidebar-border-item: rgba(255, 255, 255, 0.08);
+
+  --ot-table-head-bg: #222830;
+  --ot-table-head-text: #ffffff;
+  --ot-table-zebra-bg: #16191d;
+  --ot-table-hover-bg: #28303a;
+  --ot-border: #293038;
+  --ot-border-subtle: #1e2329;
+
+  --ot-code-inline-bg: #23282f;
+  --ot-code-inline-text: #e5a468;
+  --ot-breadcrumb-current: #ffffff;
 }
 
 /* ==========================================================================
@@ -129,22 +319,24 @@ body {
 
   /* Stationary pinned header: Title & Search bar stay frozen in place */
   .wy-side-nav-search {
+    flex: 0 0 auto !important;
     flex-shrink: 0 !important;
-    position: relative !important;
+    position: sticky !important;
     top: 0 !important;
-    z-index: 10 !important;
+    z-index: 100 !important;
     background: var(--ot-sidebar-bg) !important;
-    padding: 1.4rem 1.2rem 1.1rem 1.2rem !important;
+    padding: 1.8rem 1.2rem 1.1rem 1.2rem !important;
     border-bottom: 1px solid var(--ot-sidebar-border-sharp) !important;
     text-align: center;
   }
 
   /* The headings, subtitles, and toctree links scroll without visible scrollbar */
   .wy-menu-vertical {
-    flex: 1 1 auto !important;
+    flex: 1 1 0px !important;
+    min-height: 0 !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    height: 100% !important;
+    height: auto !important;
     padding: 0.5rem 0 3.5rem 0 !important;
     background: var(--ot-sidebar-bg) !important;
     scrollbar-width: none !important; /* Firefox: completely hide scrollbar */
@@ -213,12 +405,17 @@ body {
   }
 
   .wy-side-nav-search {
-    flex-shrink: 0 !important;
+    flex: 0 0 auto !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 100 !important;
+    padding: 1.6rem 1.2rem 1.1rem 1.2rem !important;
     border-bottom: 1px solid var(--ot-sidebar-border-sharp) !important;
   }
 
   .wy-menu-vertical {
-    flex: 1 1 auto !important;
+    flex: 1 1 0px !important;
+    min-height: 0 !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
     scrollbar-width: none !important;
@@ -265,12 +462,19 @@ body {
   text-decoration: underline !important;
 }
 
-/* Home Icon */
+/* Otter Mascot Icon in Breadcrumbs */
 .wy-breadcrumbs li a.icon-home,
 .wy-breadcrumbs li a.icon-home:before {
-  color: var(--ot-river-teal) !important;
-  font-size: 1.05rem !important;
-  vertical-align: middle;
+  content: "" !important;
+  display: inline-block !important;
+  width: 16px !important;
+  height: 16px !important;
+  vertical-align: -2px !important;
+  margin-right: 5px !important;
+  background-image: url("otter_icon.svg") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
 }
 
 /* Active Page / Topic Title */
@@ -300,7 +504,7 @@ body {
 }
 
 /* ==========================================================================
-   SIDEBAR NAVIGATION: GODOT STYLE & SHARP DIVIDERS
+   SIDEBAR NAVIGATION: OTTER MASCOT & SHARP DIVIDERS
    ========================================================================== */
 
 .wy-nav-side,
@@ -311,18 +515,33 @@ body {
 
 .wy-side-nav-search {
   background: var(--ot-sidebar-bg) !important;
-  padding: 1.4rem 1.2rem 1.1rem 1.2rem !important;
+  padding: 1.8rem 1.2rem 1.1rem 1.2rem !important;
   border-bottom: 1px solid var(--ot-sidebar-border-sharp) !important;
   text-align: center;
 }
 
 .wy-side-nav-search > a {
   color: #f1f6fa !important;
-  font-weight: 700;
-  font-size: 1.3rem;
-  letter-spacing: 0.5px;
-  display: block;
-  margin-bottom: 0.5rem;
+  font-weight: 700 !important;
+  font-size: 1.35rem !important;
+  letter-spacing: 0.5px !important;
+  display: block !important;
+  margin-bottom: 0.6rem !important;
+  line-height: 1.3 !important;
+}
+
+/* Replaced Home Icon with Custom Otter Mascot Icon */
+.wy-side-nav-search > a.icon-home:before {
+  content: "" !important;
+  display: inline-block !important;
+  width: 24px !important;
+  height: 24px !important;
+  vertical-align: -4px !important;
+  margin-right: 8px !important;
+  background-image: url("otter_icon.svg") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
 }
 
 .wy-side-nav-search input[type="text"] {
@@ -354,7 +573,7 @@ body {
   margin: 0 !important;
 }
 
-/* Category Captions (e.g. GETTING STARTED, TUTORIALS) with Sharp Separators */
+/* Category Captions with Sharp Separator Lines */
 .wy-menu-vertical p.caption {
   display: block !important;
   color: var(--ot-sidebar-caption) !important;
@@ -381,7 +600,7 @@ body {
   border-bottom: 1px solid var(--ot-sidebar-border-item) !important;
 }
 
-/* Base Navigation Links (Strict Block Box-Model with Positive Padding) */
+/* Base Navigation Links */
 .wy-menu-vertical li a {
   display: block !important;
   color: var(--ot-sidebar-text) !important;
@@ -626,14 +845,14 @@ table.docutils td {
 
 /* Code Blocks */
 .rst-content .highlight {
-  background: #11171d !important;
+  background: #14171c !important;
   border: 1px solid var(--ot-border);
   border-radius: 6px;
   margin: 1.2rem 0;
 }
 
 .rst-content .highlight pre {
-  color: #e4f1ed !important;
+  color: #e2ded7 !important;
   font-family: 'Consolas', 'Fira Code', monospace;
   font-size: 0.88rem;
   line-height: 1.5;
@@ -650,7 +869,7 @@ table.docutils td {
 
 .rst-content .admonition.note {
   border-color: var(--ot-river-teal) !important;
-  background-color: rgba(78, 205, 196, 0.08) !important;
+  background-color: rgba(72, 169, 153, 0.08) !important;
 }
 
 .rst-content .admonition.note .admonition-title {
@@ -662,7 +881,7 @@ table.docutils td {
 .rst-content .admonition.warning,
 .rst-content .admonition.important {
   border-color: var(--ot-trail-clay) !important;
-  background-color: rgba(229, 147, 76, 0.08) !important;
+  background-color: rgba(214, 141, 78, 0.08) !important;
 }
 
 .rst-content .admonition.warning .admonition-title,
@@ -672,10 +891,52 @@ table.docutils td {
   font-weight: 700;
 }
 
-/* Theme Switcher Button Removed */
-.otterus-theme-container,
-.otterus-theme-btn {
+/* ==========================================================================
+   Debug Palette Switcher Button (Floating Corner Badge)
+   ========================================================================== */
+
+.otterus-debug-switcher {
   display: none !important;
+}
+
+.otterus-debug-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: var(--ot-sidebar-bg) !important;
+  color: var(--ot-text-main) !important;
+  border: 1px solid var(--ot-sidebar-border-sharp) !important;
+  border-radius: 20px !important;
+  padding: 6px 14px !important;
+  font-size: 0.82rem !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+  transition: all 0.2s ease !important;
+  user-select: none !important;
+}
+
+.otterus-debug-pill:hover {
+  border-color: var(--ot-river-teal) !important;
+  color: var(--ot-heading) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.65) !important;
+  transform: translateY(-1px) !important;
+}
+
+.otterus-debug-prefix {
+  color: var(--ot-text-muted) !important;
+  margin-right: 5px !important;
+  font-size: 0.74rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.otterus-debug-arrow {
+  margin-left: 8px !important;
+  color: var(--ot-river-teal) !important;
+  font-size: 0.74rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
 }
 
 /* Footer & Buttons */

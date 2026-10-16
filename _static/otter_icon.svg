@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
+  <!-- Otter Ears -->
+  <circle cx="8.5" cy="9.5" r="4.2" fill="#8d562b" />
+  <circle cx="8.5" cy="9.5" r="2.2" fill="#d49b6a" />
+  <circle cx="23.5" cy="9.5" r="4.2" fill="#8d562b" />
+  <circle cx="23.5" cy="9.5" r="2.2" fill="#d49b6a" />
+
+  <!-- Otter Head Silhouette -->
+  <ellipse cx="16" cy="17" rx="11" ry="9.5" fill="#a76834" />
+
+  <!-- Cream Throat & Muzzle -->
+  <ellipse cx="16" cy="19.2" rx="6.8" ry="4.8" fill="#fdfaf4" />
+
+  <!-- Nose -->
+  <path d="M 14.3 17.2 Q 16 16.5 17.7 17.2 Q 16 19 14.3 17.2 Z" fill="#2d1c12" />
+
+  <!-- Whiskers -->
+  <path d="M 12 19 L 6.5 18 M 12 20.3 L 6 21 M 20 19 L 25.5 18 M 20 20.3 L 26 21" stroke="#8d562b" stroke-width="0.75" stroke-linecap="round" />
+
+  <!-- Eyes -->
+  <circle cx="12" cy="14.2" r="1.6" fill="#1e140d" />
+  <circle cx="11.5" cy="13.7" r="0.55" fill="#ffffff" />
+  <circle cx="20" cy="14.2" r="1.6" fill="#1e140d" />
+  <circle cx="19.5" cy="13.7" r="0.55" fill="#ffffff" />
+</svg>
