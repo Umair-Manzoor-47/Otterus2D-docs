@@ -1,6 +1,6 @@
 # Otterus2D Documentation Repository
 
-Welcome to the official documentation source repository for the [Otterus2D](https://github.com/CodePlanter/Otterus2D) game engine.
+Welcome to the official documentation source repository for the [Otterus2D](https://github.com/Umair-Manzoor-47/Otterus2D) game engine.
 
 This repository is built using **Sphinx** and the **Read the Docs** Sphinx theme, following the structure and conventions of the official Godot documentation repository.
 
