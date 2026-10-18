@@ -42,8 +42,8 @@ html_title = "Otterus2D Documentation"
 html_static_path = ["_static"]
 
 # Custom branding assets
-# html_logo = "_static/otterus_logo.svg"
-html_favicon = "_static/otterus_favicon.svg"
+# html_logo = "_static/Otterus2D_SplashBanner.png"
+html_favicon = "_static/favicon_32x32.png"
 
 # Custom stylesheets and scripts
 html_css_files = ["custom.css"]

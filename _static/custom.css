@@ -471,10 +471,11 @@ body {
   height: 16px !important;
   vertical-align: -2px !important;
   margin-right: 5px !important;
-  background-image: url("otter_icon.svg") !important;
+  background-image: url("OtterusIcon.png") !important;
   background-size: contain !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
+  image-rendering: pixelated;
 }
 
 /* Active Page / Topic Title */
@@ -538,10 +539,11 @@ body {
   height: 24px !important;
   vertical-align: -4px !important;
   margin-right: 8px !important;
-  background-image: url("otter_icon.svg") !important;
+  background-image: url("OtterusIcon.png") !important;
   background-size: contain !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
+  image-rendering: pixelated;
 }
 
 .wy-side-nav-search input[type="text"] {
